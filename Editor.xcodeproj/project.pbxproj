@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		875A1C9B2496BAA90037B301 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A1C9A2496BAA90037B301 /* TextViewTableViewCell.swift */; };
 		875A1C9E2496D70C0037B301 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A1C9D2496D70C0037B301 /* Constant.swift */; };
+		875A1CA024976AB50037B301 /* HelperFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A1C9F24976AB50037B301 /* HelperFunction.swift */; };
 		87F7587F2494B52600610FED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F7587E2494B52600610FED /* AppDelegate.swift */; };
 		87F758812494B52600610FED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F758802494B52600610FED /* SceneDelegate.swift */; };
 		87F758832494B52600610FED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F758822494B52600610FED /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		875A1C9A2496BAA90037B301 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		875A1C9D2496D70C0037B301 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		875A1C9F24976AB50037B301 /* HelperFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunction.swift; sourceTree = "<group>"; };
 		87F7587B2494B52600610FED /* Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Editor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F7587E2494B52600610FED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87F758802494B52600610FED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				875A1C9D2496D70C0037B301 /* Constant.swift */,
+				875A1C9F24976AB50037B301 /* HelperFunction.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				875A1C9E2496D70C0037B301 /* Constant.swift in Sources */,
 				87F7587F2494B52600610FED /* AppDelegate.swift in Sources */,
 				87F758812494B52600610FED /* SceneDelegate.swift in Sources */,
+				875A1CA024976AB50037B301 /* HelperFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

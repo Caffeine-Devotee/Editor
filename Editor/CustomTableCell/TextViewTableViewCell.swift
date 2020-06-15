@@ -11,10 +11,10 @@ import UIKit
 class TextViewTableViewCell: UITableViewCell {
     
     var textFormatButtonOutlet = UIBarButtonItem()
-    var controller : ViewController?
+    weak var controller : ViewController?
     
     var formatCase = formatCase_2
-    var tuple : (String, Int, Int) = ("", 0, 0)
+    var tuple : (NSAttributedString, Int, Int) = (NSAttributedString(string: ""), 0, 0)
     
     @IBOutlet weak var editTextView: UITextView!
     
@@ -30,12 +30,13 @@ class TextViewTableViewCell: UITableViewCell {
     }
     
     
-    func setupCell(controller : ViewController, tuple : (String, Int, Int)) {
+    func setupCell(controller : ViewController, tuple : (NSAttributedString, Int, Int)) {
         
         self.controller = controller
         self.editTextView.delegate = self
         self.tuple = tuple
         
+        //Crating the tool Bar
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         toolBar.backgroundColor = .white
@@ -52,7 +53,7 @@ class TextViewTableViewCell: UITableViewCell {
         
         self.editTextView.inputAccessoryView = toolBar
         let attribute = getTextAttribute(type: self.formatCase[self.textFormatButtonOutlet.tag])
-        let attributedText = NSAttributedString(string: self.tuple.0, attributes: attribute)
+        let attributedText = NSAttributedString(string: self.tuple.0.string, attributes: attribute)
         self.editTextView.attributedText = attributedText
         self.editTextView.typingAttributes = getTextAttribute(type: self.formatCase[self.textFormatButtonOutlet.tag])
         
@@ -77,34 +78,45 @@ class TextViewTableViewCell: UITableViewCell {
 extension TextViewTableViewCell : UITextViewDelegate {
     //TextView Delegate
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print("here")
+    }
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        //Saving the data as you type
-        self.controller?.tableData[self.tuple.2].0 = self.editTextView.text
-        self.controller?.tableData[self.tuple.2].1 = self.tuple.1
-        
-        if text == "\n" { //Hit Enter
-            self.controller?.tableData.insert(("", 0, self.tuple.2 + 1), at: self.tuple.2 + 1)
-            self.controller?.desiredCell = self.tuple.2 + 1
-            self.controller?.editTextView.becomeFirstResponder()
-            self.controller?.tableView.reloadData()
+        //Probably due to slow render a condition check
+        if self.tuple.2 < self.controller?.tableData.count ?? 0 {
+            //Saving the data as you type
+            self.controller?.tableData[self.tuple.2].0 = self.editTextView.attributedText
+            self.controller?.tableData[self.tuple.2].1 = self.tuple.1
             
-            return false
-        } else if text == "" && range.length == 0 && self.tuple.2 != 0 && textView.text.count == 0 { //Empty & Backspace
-            self.controller?.tableData.remove(at: self.tuple.2)
-            self.controller?.desiredCell = self.tuple.2 - 1
-            self.controller?.editTextView.becomeFirstResponder()
-            self.controller?.tableView.reloadData()
-            
-            return false
-        } else if text == "" && range.length == 0 && self.tuple.2 != 0 && textView.text.count != 0 { //Not Empty & Backspace
-            self.controller?.tableData.remove(at: self.tuple.2)
-            self.controller?.desiredCell = self.tuple.2 - 1
-            self.controller?.tableData[self.tuple.2 - 1].0.append(" " + textView.text)
-            self.controller?.editTextView.becomeFirstResponder()
-            self.controller?.tableView.reloadData()
-            
-            return false
+            if text == "\n" { //Hit Enter
+                self.controller?.tableData.insert((NSAttributedString(string: ""), 0, self.tuple.2 + 1), at: self.tuple.2 + 1)
+                self.controller?.desiredCell = self.tuple.2 + 1
+                self.controller?.editTextView.becomeFirstResponder()
+                self.controller?.tableView.reloadData()
+                
+                return false
+            } else if text == "" && range.length == 0 && self.tuple.2 != 0 && textView.text.count == 0 { //Empty & Backspace
+                self.controller?.tableData.remove(at: self.tuple.2)
+                self.controller?.desiredCell = self.tuple.2 - 1
+                self.controller?.editTextView.becomeFirstResponder()
+                self.controller?.tableView.reloadData()
+                
+                return false
+            } else if text == "" && range.length == 0 && self.tuple.2 != 0 && textView.text.count != 0 { //Not Empty & Backspace
+                self.controller?.tableData.remove(at: self.tuple.2)
+                self.controller?.desiredCell = self.tuple.2 - 1
+                let index = self.controller?.tableData[self.tuple.2 - 1].1 ?? 0
+                let attribute = getTextAttribute(type: self.formatCase[index])
+                let newString = (self.controller?.tableData[self.tuple.2 - 1].0.string ?? "") + " " + textView.text
+                self.controller?.tableData[self.tuple.2 - 1].0 = NSAttributedString(string: newString, attributes: attribute)
+                
+                self.controller?.editTextView.becomeFirstResponder()
+                self.controller?.tableView.reloadData()
+                
+                return false
+            }
         }
         
         return true

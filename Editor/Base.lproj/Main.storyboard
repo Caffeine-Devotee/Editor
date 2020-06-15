@@ -15,14 +15,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9t2-jM-cD4">
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9t2-jM-cD4">
                                 <rect key="frame" x="16" y="64" width="382" height="798"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nb6-jv-utq">
-                                <rect key="frame" x="0.0" y="64" width="414" height="798"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextViewTableCell" id="F1P-kp-um0" customClass="TextViewTableViewCell" customModule="Editor" customModuleProvider="target">
@@ -39,7 +39,7 @@
                                                         <fragment content="Lorem ipsum dolor sit er elit lamet, consectetaur cillium">
                                                             <attributes>
                                                                 <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <font key="NSFont" metaFont="system" size="14"/>
+                                                                <font key="NSFont" metaFont="menu" size="14"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -60,17 +60,35 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuo-c3-12S">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem id="iDf-Wi-PFp">
+                                        <barButtonItem key="rightBarButtonItem" title="Publish" id="Ha8-NN-sE2">
+                                            <color key="tintColor" red="0.090196078431372548" green="0.6705882352941176" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="publishButtonAction:" destination="BYZ-38-t0r" id="MEK-FY-LkW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nb6-jv-utq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3Y8-cd-Ghh"/>
                             <constraint firstItem="9t2-jM-cD4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="532-Vb-qSl"/>
+                            <constraint firstItem="nb6-jv-utq" firstAttribute="top" secondItem="vuo-c3-12S" secondAttribute="bottom" symbolic="YES" id="9Th-yR-dVC"/>
+                            <constraint firstItem="vuo-c3-12S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Dzb-Si-ROl"/>
                             <constraint firstItem="9t2-jM-cD4" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="K4d-Gf-hih"/>
-                            <constraint firstItem="nb6-jv-utq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="SVt-DF-86B"/>
                             <constraint firstItem="nb6-jv-utq" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="UL3-y7-ZSE"/>
                             <constraint firstItem="9t2-jM-cD4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Zrp-DZ-Aql"/>
+                            <constraint firstItem="vuo-c3-12S" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aC7-OX-6Qc"/>
                             <constraint firstItem="nb6-jv-utq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="d1g-Ns-meC"/>
                             <constraint firstItem="9t2-jM-cD4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="eGq-tG-aXx"/>
+                            <constraint firstItem="vuo-c3-12S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xSF-1Z-tbx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

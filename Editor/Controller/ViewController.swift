@@ -10,13 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var tableData : [(String, Int, Int)] = [("", 0, 0)]
+    var tableData : [(NSAttributedString, Int, Int)] = [(NSAttributedString(string: ""), 0, 0)]
     var desiredCell = 0
     
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editTextView: UITextView!
-
+    @IBAction func publishButtonAction(_ sender: UIBarButtonItem) {
+        for text in tableData {
+            print(text.0)
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
